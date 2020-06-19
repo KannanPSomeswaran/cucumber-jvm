@@ -1,24 +1,22 @@
 package io.cucumber.core.snippets;
 
-final class FunctionNameGenerator {
+final class IdentifierGenerator {
 
     private static final Character SUBST = ' ';
     private final Joiner joiner;
 
-    FunctionNameGenerator(Joiner joiner) {
+    IdentifierGenerator(Joiner joiner) {
         this.joiner = joiner;
     }
 
-    String generateFunctionName(String sentence) {
-
-        sentence = removeIllegalCharacters(sentence);
+    String generate(String sentence) {
+        sentence = replaceIllegalCharacters(sentence);
         sentence = sentence.trim();
         String[] words = sentence.split("\\s");
-
         return joiner.concatenate(words);
     }
 
-    private String removeIllegalCharacters(String sentence) {
+    private String replaceIllegalCharacters(String sentence) {
         if (sentence.isEmpty()) {
             throw new IllegalArgumentException("Cannot create function name from empty sentence");
         }
